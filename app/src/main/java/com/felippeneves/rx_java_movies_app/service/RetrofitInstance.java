@@ -1,7 +1,5 @@
 package com.felippeneves.rx_java_movies_app.service;
 
-import com.felippeneves.rx_java_movies_app.BuildConfig;
-
 import java.util.concurrent.TimeUnit;
 
 import okhttp3.OkHttpClient;
@@ -11,6 +9,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class RetrofitInstance {
 
+    private static final String BASE_URL = "https://api.themoviedb.org/3/";
     private static Retrofit retrofit = null;
 
     public static MoviesDataService getService() {
@@ -25,7 +24,7 @@ public class RetrofitInstance {
 
             retrofit = new Retrofit
                     .Builder()
-                    .baseUrl(BuildConfig.BASE_URL)
+                    .baseUrl(BASE_URL)
                     .client(okHttpClient)
                     .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                     .addConverterFactory(GsonConverterFactory.create())
